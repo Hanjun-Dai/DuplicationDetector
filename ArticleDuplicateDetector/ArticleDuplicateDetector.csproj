@@ -78,6 +78,7 @@
       <HintPath>References\Palas.Common.Lib.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -87,6 +88,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Client.cs" />
+    <Compile Include="DataStructure\MongoDBManager.cs" />
+    <Compile Include="DataStructure\MongoDictionary.cs" />
     <Compile Include="Detector.cs" />
     <Compile Include="FingerPrintBuilder.cs" />
     <Compile Include="FingerPrintHolder.cs" />
@@ -97,6 +100,7 @@
   <ItemGroup>
     <None Include="app.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
