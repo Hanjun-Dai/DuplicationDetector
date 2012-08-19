@@ -156,7 +156,7 @@ namespace Analyzer.Core.Algorithm.FingerPrint
                 int[] sentenceTitle, sentenceContext, kwordsTitle, kwordsContext;
                 curDetector.GetFingerPrints(item, out sentenceTitle, out sentenceContext, out kwordsTitle, out kwordsContext);
 
-                if (curDetector.IsItemCopied(sentenceTitle, sentenceContext, kwordsTitle, kwordsContext, TITLE_WEIGHT, THRESHOLD, out DupItemID)) 
+                if (!curDetector.IsItemCopied(sentenceTitle, sentenceContext, kwordsTitle, kwordsContext, TITLE_WEIGHT, THRESHOLD, out DupItemID)) 
                 {
                     targetLock.ExitReadLock();
                     EnterWriteLock(targetLock);
