@@ -159,11 +159,14 @@ namespace Analyzer.Core.Algorithm.FingerPrint
 
                 if (!curDetector.IsItemCopied(sentenceTitle, sentenceContext, kwordsTitle, kwordsContext, TITLE_WEIGHT, THRESHOLD, out DupItemID)) 
                 {
-                    targetLock.ExitReadLock();
-                    EnterWriteLock(targetLock);
-                    curDetector.RegisterArticle(item, sentenceTitle, sentenceContext, kwordsTitle, kwordsContext);
-                    ExitWriteLock(targetLock);
-                    targetLock.EnterReadLock();
+                    if ((DateTime.Now - item.PubDate) < DetectPeriod)
+                    {
+                        targetLock.ExitReadLock();
+                        EnterWriteLock(targetLock);
+                        curDetector.RegisterArticle(item, sentenceTitle, sentenceContext, kwordsTitle, kwordsContext);
+                        ExitWriteLock(targetLock);
+                        targetLock.EnterReadLock();
+                    }
                 }
             }
             catch (Exception e)

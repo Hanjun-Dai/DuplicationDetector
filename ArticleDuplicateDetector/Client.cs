@@ -46,6 +46,7 @@ namespace Analyzer.Core.Algorithm.FingerPrint
             if (id != null)
                 Console.WriteLine("Copied Item: " + id);
             else Console.WriteLine("Not copied.");
+
         }
 
         static void Main(string[] args)

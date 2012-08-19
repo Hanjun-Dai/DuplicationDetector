@@ -42,11 +42,11 @@ namespace ArticleDuplicateDetector.Test
             DateTime curTime = DateTime.Now;
             DetectorFacade detector = new DetectorFacade(new Parameters());
             bool finished = false;
-            int total = 0, cnt = 0;
+            int total = 0, cnt = 0, dupcnt = 0;
             while (!finished)
             {
                 Console.WriteLine(cnt++);
-                if (cnt > 7 * 24) break;
+                if (cnt > 3 * 24) break;
                 List<ItemToDuplication> Items = new List<ItemToDuplication>();
                 DateTime nextTime = curTime.Subtract(new TimeSpan(1, 0, 0));
                 Console.WriteLine("Fetch time: from {0} to {1}", nextTime, curTime);
@@ -56,11 +56,13 @@ namespace ArticleDuplicateDetector.Test
                 {
                     try
                     {
-                        detector.TestAndTryAdd(Items[i]);
+                        string result = detector.TestAndTryAdd(Items[i]);
+                        if (result != null)
+                            dupcnt++;
                         total++;
                         if (total % 1000 == 0)
                         {
-                            Console.WriteLine("Have tested {0} items.", total);
+                            Console.WriteLine("Have tested {0} items. Duplication: {1}", total, dupcnt);
                         }
                         Items[i] = null;
                     }
