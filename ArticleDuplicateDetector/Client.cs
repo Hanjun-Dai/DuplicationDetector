@@ -7,6 +7,7 @@ using System.Diagnostics;
 using Palas.Common.Data;
 using System.Threading;
 using HooLab.Log;
+using ArticleDuplicateDetector.Test;
 
 namespace Analyzer.Core.Algorithm.FingerPrint
 {
@@ -19,7 +20,7 @@ namespace Analyzer.Core.Algorithm.FingerPrint
             StringBuilder st = new StringBuilder();
             string[] article = File.ReadAllLines(@"1.txt");
             ItemToDuplication s = new ItemToDuplication(new Item());
-            s.ItemID = "source"; s.MediaType = Enums.MediaType.WebNews; s.SpliteTitle = article[0];
+            s.ItemID = "source"; s.MediaType = Enums.MediaType.Weibo; s.SpliteTitle = article[0];
             st.Clear();
             for (int i = 1; i < article.Length; ++i)
                 st.Append(article[i]);
@@ -32,7 +33,7 @@ namespace Analyzer.Core.Algorithm.FingerPrint
             #region 建立一个测试item
             article = File.ReadAllLines(@"2.txt");
             //s = new ItemToDuplication();
-            s.ItemID = "test"; s.MediaType = Enums.MediaType.WebNews; s.SpliteTitle = article[0];
+            s.ItemID = "test"; s.MediaType = Enums.MediaType.Weibo; s.SpliteTitle = article[0];
             st.Clear();
             for (int i = 1; i < article.Length; ++i)
                 st.Append(article[i]);
@@ -49,7 +50,9 @@ namespace Analyzer.Core.Algorithm.FingerPrint
 
         static void Main(string[] args)
         {
-            SimpleTest();
+            //SimpleTest();
+            FingerPrintUpperTest.StartTest();
+            Console.WriteLine("all is well");
             Console.ReadLine();
         }
     }

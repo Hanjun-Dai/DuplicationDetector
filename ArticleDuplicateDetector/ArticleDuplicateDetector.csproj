@@ -91,6 +91,7 @@
     <Compile Include="DataStructure\MongoDBManager.cs" />
     <Compile Include="DataStructure\MongoDictionary.cs" />
     <Compile Include="Detector.cs" />
+    <Compile Include="Duplication.cs" />
     <Compile Include="FingerPrintBuilder.cs" />
     <Compile Include="FingerPrintHolder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

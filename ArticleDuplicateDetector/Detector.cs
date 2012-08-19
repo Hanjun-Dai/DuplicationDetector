@@ -96,7 +96,7 @@ namespace Analyzer.Core.Algorithm.FingerPrint
     /// </summary>
     public class DetectorFacade 
     {
-        public static TimeSpan DetectPeriod = new TimeSpan(2, 0, 0, 0);
+        public static TimeSpan DetectPeriod = new TimeSpan(7, 0, 0, 0);
         private ConcurrentDictionary<Enums.MediaType, Detector> detectorOFMedia;
         private Parameters defaultContextParameters;
         private ConcurrentDictionary<Enums.MediaType, ReaderWriterLockSlim> detectorLock;
@@ -136,6 +136,7 @@ namespace Analyzer.Core.Algorithm.FingerPrint
             detectorLock = new ConcurrentDictionary<Enums.MediaType, ReaderWriterLockSlim>();
             this.defaultContextParameters = defaultContextParameters;
             detectorOFMedia = new ConcurrentDictionary<Enums.MediaType, Detector>();
+            DetectPeriod = new TimeSpan(Duplication.nBackwardDays, 0, 0, 0);
         }
 
         public string TestAndTryAdd(ItemToDuplication item, double TITLE_WEIGHT = -1, double THRESHOLD = -1)
