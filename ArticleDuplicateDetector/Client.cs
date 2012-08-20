@@ -14,13 +14,13 @@ namespace Analyzer.Core.Algorithm.FingerPrint
     class Client
     {
         private static DetectorFacade myDetector = new DetectorFacade(new Parameters());
-        private static void SimpleTest()
+        private static void SimpleTest(Enums.MediaType type)
         {
             #region 建立一个item
             StringBuilder st = new StringBuilder();
             string[] article = File.ReadAllLines(@"1.txt");
             ItemToDuplication s = new ItemToDuplication(new Item());
-            s.ItemID = "source"; s.MediaType = Enums.MediaType.Weibo; s.SpliteTitle = article[0];
+            s.ItemID = "source"; s.MediaType = type; s.SpliteTitle = article[0]; s.PubDate = DateTime.Now;
             st.Clear();
             for (int i = 1; i < article.Length; ++i)
                 st.Append(article[i]);
@@ -33,7 +33,7 @@ namespace Analyzer.Core.Algorithm.FingerPrint
             #region 建立一个测试item
             article = File.ReadAllLines(@"2.txt");
             //s = new ItemToDuplication();
-            s.ItemID = "test"; s.MediaType = Enums.MediaType.Weibo; s.SpliteTitle = article[0];
+            s.ItemID = "test"; s.MediaType = type; s.SpliteTitle = article[0]; s.PubDate = DateTime.Now;
             st.Clear();
             for (int i = 1; i < article.Length; ++i)
                 st.Append(article[i]);
@@ -51,8 +51,9 @@ namespace Analyzer.Core.Algorithm.FingerPrint
 
         static void Main(string[] args)
         {
-            //SimpleTest();
-            FingerPrintUpperTest.StartTest();
+            SimpleTest(Enums.MediaType.Forum);
+            SimpleTest(Enums.MediaType.SearchForum);
+            //FingerPrintUpperTest.StartTest();
             Console.WriteLine("all is well");
             Console.ReadLine();
         }

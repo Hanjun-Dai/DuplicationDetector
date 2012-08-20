@@ -103,6 +103,10 @@ namespace Analyzer.Core.Algorithm.FingerPrint
 
         private void RegisterMediaType(Enums.MediaType mediaType, Parameters contextParameters)
         {
+            if (mediaType == Enums.MediaType.SearchWeibo)
+                mediaType = Enums.MediaType.Weibo;
+            if (mediaType == Enums.MediaType.SearchForum)
+                mediaType = Enums.MediaType.Forum;
             if (mediaType != Enums.MediaType.Weibo && mediaType != Enums.MediaType.Forum)
                 mediaType = Enums.MediaType.Unknown;
             if (detectorOFMedia.ContainsKey(mediaType)) return;
@@ -119,6 +123,10 @@ namespace Analyzer.Core.Algorithm.FingerPrint
 
         private Detector GetCurDetector(Enums.MediaType mediaType) 
         {
+            if (mediaType == Enums.MediaType.SearchWeibo)
+                mediaType = Enums.MediaType.Weibo;
+            if (mediaType == Enums.MediaType.SearchForum)
+                mediaType = Enums.MediaType.Forum;
             if (mediaType != Enums.MediaType.Weibo && mediaType != Enums.MediaType.Forum)
                 mediaType = Enums.MediaType.Unknown;
             if (!detectorOFMedia.ContainsKey(mediaType))
