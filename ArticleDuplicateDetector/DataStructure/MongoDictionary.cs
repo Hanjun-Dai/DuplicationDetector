@@ -58,12 +58,12 @@ namespace ArticleDuplicateDetector.DataStructure
             IMongoQuery query = Query.And(Query.EQ("FingerPrint", fingerPrint), Query.EQ("CollectionTag", collectionTag));
             var result = collection.FindOneAs<FingerPrintList>(query);
             if (result != null)
-                collection.Remove(query);
+                collection.Remove(query, SafeMode.False);
             result = new FingerPrintList();
             result.FingerPrint = fingerPrint;
             result.CollectionTag = collectionTag;
             result.Items = items;
-            collection.Insert(result);
+            collection.Insert(result, SafeMode.False);
         }
     }
 }
